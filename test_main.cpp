@@ -28,5 +28,34 @@ int main() {
 
     std::cout << "Test 1 passed!" << std::endl;
 
+    // Test 2: Test capacity expansion
+    std::cout << "\nTest 2: Capacity expansion test" << std::endl;
+    p = nullptr;
+    Init(p, 1);
+
+    // Add many elements to test capacity doubling
+    for(int i = 1; i <= 20; i++){
+        Add_element(p, 1, i * 10);
+    }
+
+    std::cout << "Added 20 elements" << std::endl;
+
+    // Verify all elements
+    bool allCorrect = true;
+    for(int i = 1; i <= 20; i++){
+        int val = Get_element(p, 1, i);
+        if(val != i * 10){
+            std::cout << "Error: element " << i << " is " << val << ", expected " << (i * 10) << std::endl;
+            allCorrect = false;
+        }
+    }
+
+    if(allCorrect){
+        std::cout << "All 20 elements are correct!" << std::endl;
+    }
+
+    Clear(p, 1);
+    std::cout << "Test 2 passed!" << std::endl;
+
     return 0;
 }
